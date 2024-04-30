@@ -1,16 +1,25 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+
+    id("com.google.dagger.hilt.android")
+    id("kotlin-android")
+    id("kotlin-kapt")
+
 }
+
+
 
 android {
     namespace = "com.example.test"
     compileSdk = 34
 
+
+
     defaultConfig {
         applicationId = "com.example.test"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -48,7 +57,17 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+/*
+    ndkVersion = "20.0.5594570"
+*/
+
+
 }
+
+
+
+
+
 
 dependencies {
 
@@ -75,14 +94,28 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation("io.coil-kt:coil-compose:2.2.2")
+    implementation("io.coil-kt:coil-compose:2.6.0")
 
     val voyagerVersion = "1.0.0"
-    // Navigator
     implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion")
-    // TabNavigator
     implementation("cafe.adriel.voyager:voyager-tab-navigator:$voyagerVersion")
-    // Transitions
     implementation("cafe.adriel.voyager:voyager-transitions:$voyagerVersion")
+    implementation("cafe.adriel.voyager:voyager-hilt:$voyagerVersion")
+     implementation("cafe.adriel.voyager:voyager-screenmodel:$voyagerVersion")
 
+
+    implementation ("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.11.0")
+
+
+
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
+    kapt("androidx.hilt:hilt-compiler:1.2.0")
+
+
+}
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

@@ -1,7 +1,7 @@
-package com.example.test
+package com.example.test.ui
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.AccountCircle
+import androidx.compose.material.icons.rounded.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
@@ -9,16 +9,16 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 
-object DetailTab : Tab {
+object HomeTab : Tab {
     override val options: TabOptions
        @Composable
         get()  {
-            val title = "Account"
-           val icon = rememberVectorPainter(Icons.Rounded.AccountCircle)
+            val title = "Home"
+           val icon = rememberVectorPainter(Icons.Rounded.Home)
 
            return remember {
                TabOptions(
-                   index = 1u,
+                   index = 0u,
                    title = title,
                    icon = icon
                )
@@ -27,6 +27,8 @@ object DetailTab : Tab {
 
     @Composable
     override fun Content() {
-       Navigator(DetailScreen())
+
+
+       Navigator(HomeScreen())
     }
 }

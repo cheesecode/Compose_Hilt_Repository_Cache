@@ -3,12 +3,14 @@ package com.example.test.viewmodel
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainActivityViewModel : ViewModel() {
+@HiltViewModel
+class MainActivityViewModel  @Inject constructor() : ViewModel() {
     val countDownFlow = flow<Int> {
         val startCount = 10
         var currentVal = startCount
@@ -28,7 +30,7 @@ class MainActivityViewModel : ViewModel() {
     private fun countDown() {
         viewModelScope.launch {
             countDownFlow.collect {
-println( it)
+                println("Counting down $it")
             }
         }
     }
